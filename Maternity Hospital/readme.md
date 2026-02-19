@@ -7,56 +7,57 @@
 ## Data Model: 
 - **Entities & Attributes (Constraints, Indexes):**
 
- - **Staffs**
-id (Primary Key, Auto Increment, Not Null)
-name (Not Null, Indexed)
-email (Not Null, Unique)
-phone (Not Null)
-status (Enum: Active, Inactive, On Break)
+  - **Staffs**
+    - id (Primary Key, Auto Increment, Not Null)
+    - name (Not Null, Indexed)
+    - email (Not Null, Unique)
+    - phone (Not Null)
+    - status (Enum: Active, Inactive, On Break)
 
- - **Patients**
-id (Primary Key, Auto Increment, Not Null)
-name (Not Null, Indexed)
-address
-phone (Not Null)
+  - **Patients**
+    - id (Primary Key, Auto Increment, Not Null)
+    - name (Not Null, Indexed)
+    - address
+    - phone (Not Null)
 
- - **Childbirths**
-id (Primary Key, Auto Increment, Not Null)
-dateTime (Not Null)
-patient_id (Foreign Key → Patients.id, Not Null)
-status (Enum: Natural, Surgical, Not Null)
-Associated Staffs: via Childbirth_Staffs junction table
+  - **Childbirths**
+    - id (Primary Key, Auto Increment, Not Null)
+    - dateTime (Not Null)
+    - patient_id (Foreign Key → Patients.id, Not Null)
+    - status (Enum: Natural, Surgical, Not Null)
+    - Associated Staffs: via Childbirth_Staffs junction table
 
- - **Childbirth_Staffs** (Junction Table)
-id (Primary Key, Auto Increment, Not Null)
-childbirth_id (Foreign Key → Childbirths.id, Not Null)
-staff_id (Foreign Key → Staffs.id, Not Null)
+  - **Childbirth_Staffs** (Junction Table)
+    - id (Primary Key, Auto Increment, Not Null)
+    - childbirth_id (Foreign Key → Childbirths.id, Not Null)
+    - staff_id (Foreign Key → Staffs.id, Not Null)
 
- - **Newborn_Babies**
-id (Primary Key, Auto Increment, Not Null)
-childbirth_id (Foreign Key → Childbirths.id, Not Null)
-status (Enum: Healthy, Sick, Deceased)
+  - **Newborn_Babies**
+    - id (Primary Key, Auto Increment, Not Null)
+    - childbirth_id (Foreign Key → Childbirths.id, Not Null)
+    - status (Enum: Healthy, Sick, Deceased)
 
- - **Prescriptions**
-id (Primary Key, Auto Increment, Not Null)
-subject (Enum: Patient, Newborn_Baby, Not Null)
-subject_id (Foreign Key → Patients.id / Newborn_Babies.id, Not Null)
-imageURL (Not Null)
+  - **Prescriptions**
+    - id (Primary Key, Auto Increment, Not Null)
+    - subject (Enum: Patient, Newborn_Baby, Not Null)
+    - subject_id (Foreign Key → Patients.id / Newborn_Babies.id, Not Null)
+    - imageURL (Not Null)
 
- - **Payments**
-id (Primary Key, Auto Increment, Not Null)
-subject (Enum: Childbirth, Prescription, Not Null)
-subject_id (Foreign Key → Childbirths.id / Prescriptions.id, Not Null)
-amount (Not Null, Positive)
-date (Not Null)
+  - **Payments**
+    - id (Primary Key, Auto Increment, Not Null)
+    - subject (Enum: Childbirth, Prescription, Not Null)
+    - subject_id (Foreign Key → Childbirths.id / Prescriptions.id, Not Null)
+    - amount (Not Null, Positive)
+    - date (Not Null)
 
 - **Relationships**
- - **Staffs** ↔ **Childbirths**: Many-to-Many via Childbirth_Staffs
- - **Childbirths** → **Childbirth_Staffs**: One-to-Many
- - **Staffs** → **Childbirth_Staffs**: One-to-Many
- - **Patients** → **Childbirths**: One-to-Many
- - **Childbirths** → **Newborn_Babies**: One-to-Many
- - **Newborn_Babies** → **Prescriptions**: One-to-Many
- - **Patients** → **Prescriptions**: One-to-Many
- - **Childbirths** → **Payments**: One-to-One
- - **Prescriptions** → **Payments**: One-to-One
+  - **Staffs** ↔ **Childbirths**: Many-to-Many via Childbirth_Staffs
+  - **Childbirths** → **Childbirth_Staffs**: One-to-Many
+  - **Staffs** → **Childbirth_Staffs**: One-to-Many
+  - **Patients** → **Childbirths**: One-to-Many
+  - **Childbirths** → **Newborn_Babies**: One-to-Many
+  - **Newborn_Babies** → **Prescriptions**: One-to-Many
+  - **Patients** → **Prescriptions**: One-to-Many
+  - **Childbirths** → **Payments**: One-to-One
+  - **Prescriptions** → **Payments**: One-to-One
+
