@@ -5,23 +5,58 @@
 - MySQL
 
 ## Data Model: 
-- **Entities, Columns, Constrains, indexes**:
-    1. Doctors: id, name, email, phone, status
-    2. Nurses: id, name, email, phone, status
-    3. Staffs: id, name, email, phone, status
-    4. Rooms: number, number_of_beds, free_beds;
-    5. Patients: id, name, address, phone
-    6. Childbirths: id, status, doctor, 
-    7. Newborn Babies:
-    8. Prescriptions:
-    9. Payments:
-- **Relationships**:
-    1. Childbirth → Doctor (1:n)
-    2. Childbirth → Nurse (1:n)
-    3. Childbirth → Room (1:1)
-    4. Childbirth → Patient (1:1)
-    5. Childbirth → Newborn Baby (1:0.1.n)
-    6. Newborn Baby → Prescription  (1:n)
-    7. Patient → Prescription  (1:n)
-    8. Childbirth → Payment (1:1)
-    9. Prescription → Payment (1:1)
+- **Entities, Attributes (Constrains, indexes**):
+
+- - **Staffs**
+id (Primary Key, Auto Increment, Not Null)
+name (Not Null, Indexed)
+email (Not Null, Unique)
+phone (Not Null)
+status (Enum: Active, Inactive, On Break)
+
+- - **Patients**
+id (Primary Key, Auto Increment, Not Null)
+name (Not Null, Indexed)
+address
+phone (Not Null)
+
+- - **Childbirths**
+id (Primary Key, Auto Increment, Not Null)
+dateTime (Not Null)
+patient_id (Foreign Key → Patients.id, Not Null)
+status (Enum: Natural, Surgical, Not Null)
+Associated Staffs: via Childbirth_Staffs junction table
+
+- - **Childbirth_Staffs** (Junction Table)
+id (Primary Key, Auto Increment, Not Null)
+childbirth_id (Foreign Key → Childbirths.id, Not Null)
+staff_id (Foreign Key → Staffs.id, Not Null)
+
+- - **Newborn_Babies**
+id (Primary Key, Auto Increment, Not Null)
+childbirth_id (Foreign Key → Childbirths.id, Not Null)
+status (Enum: Healthy, Sick, Deceased)
+
+- - **Prescriptions**
+id (Primary Key, Auto Increment, Not Null)
+subject (Enum: Patient, Newborn_Baby, Not Null)
+subject_id (Foreign Key → Patients.id / Newborn_Babies.id, Not Null)
+imageURL (Not Null)
+
+- - **Payments**
+id (Primary Key, Auto Increment, Not Null)
+subject (Enum: Childbirth, Prescription, Not Null)
+subject_id (Foreign Key → Childbirths.id / Prescriptions.id, Not Null)
+amount (Not Null, Positive)
+date (Not Null)
+
+- **Relationships**
+- - **Staffs** ↔ **Childbirths**: Many-to-Many via Childbirth_Staffs
+- - **Childbirths** → **Childbirth_Staffs**: One-to-Many
+- - **Staffs** → **Childbirth_Staffs**: One-to-Many
+- - **Patients** → **Childbirths**: One-to-Many
+- - **Childbirths** → **Newborn_Babies**: One-to-Many
+- - **Newborn_Babies** → **Prescriptions**: One-to-Many
+- - **Patients** → **Prescriptions**: One-to-Many
+- - **Childbirths** → **Payments**: One-to-One
+- - **Prescriptions** → **Payments**: One-to-One
