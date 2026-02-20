@@ -12,6 +12,7 @@
     - name (Not Null, Indexed)
     - email (Not Null, Unique)
     - phone (Not Null)
+    - role (Enum: (Doctor, Nurse, Helper))
     - status (Enum: Active, Inactive, On Break)
 
   - **Patients**
@@ -24,7 +25,7 @@
     - id (Primary Key, Auto Increment, Not Null)
     - dateTime (Not Null)
     - patient_id (Foreign Key → Patients.id, Not Null)
-    - status (Enum: Natural, Surgical, Not Null)
+    - status (Enum: Natural, Surgical)
     - Associated Staffs: via Childbirth_Staffs junction table
 
   - **Childbirth_Staffs** (Junction Table)
@@ -61,3 +62,7 @@
   - **Childbirths** → **Payments**: One-to-One
   - **Prescriptions** → **Payments**: One-to-One
 
+
+## Enhanced Entity–Relationship Diagram:
+
+![EER Diagram](EER%20Diagram.png)
