@@ -40,14 +40,15 @@
 
   - **Prescriptions**
     - id (Primary Key, Auto Increment, Not Null)
-    - subject (Enum: Patient, Newborn_Baby, Not Null)
-    - subject_id (Foreign Key → Patients.id / Newborn_Babies.id, Not Null)
+    - patient_id (Foreign Key → Patients.id, Null)
+    - newborn_baby_id(Foreign Key → Newborn_Babies.id,Null)
     - imageURL (Not Null)
+    - Note: The application decides which column (patient_id or newborn_baby_id) to fill
 
   - **Payments**
     - id (Primary Key, Auto Increment, Not Null)
-    - subject (Enum: Childbirth, Prescription, Not Null)
-    - subject_id (Foreign Key → Childbirths.id / Prescriptions.id, Not Null)
+    - prescription_id (Foreign Key → Prescriptions.id, Null)
+    - childbirths_id (Foreign Key → Childbirths.id, Null)
     - amount (Not Null, Positive)
     - date (Not Null)
 
