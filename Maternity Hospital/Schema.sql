@@ -1,6 +1,9 @@
 create database Maternity_Hospital;
 use Maternity_Hospital;
 
+--====================
+-- Staffs Table
+--====================
 CREATE TABLE Staffs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(45) NOT NULL,
@@ -11,6 +14,9 @@ CREATE TABLE Staffs (
     INDEX idx_name (name)
 );
 
+--====================
+-- Patients Table
+--====================
 CREATE TABLE Patients (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(45) NOT NULL,
@@ -19,6 +25,9 @@ CREATE TABLE Patients (
     INDEX idx_name (name)
 );
 
+--====================
+-- Childbirths Table
+--====================
 CREATE TABLE Childbirths (
     id INT AUTO_INCREMENT PRIMARY KEY,
     dateTime DATETIME NOT NULL,
@@ -28,6 +37,9 @@ CREATE TABLE Childbirths (
         REFERENCES Patients (id)
 );
 
+--====================
+-- Childbirth_Staffs Table
+--====================
 CREATE TABLE Childbirth_Staffs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     childbirth_id INT NOT NULL,
@@ -38,6 +50,9 @@ CREATE TABLE Childbirth_Staffs (
         REFERENCES Staffs (id)
 );
 
+--====================
+-- Newborn_Babies Table
+--====================
 CREATE TABLE Newborn_Babies (
     id INT AUTO_INCREMENT PRIMARY KEY,
     childbirth_id INT NOT NULL,
@@ -46,6 +61,9 @@ CREATE TABLE Newborn_Babies (
         REFERENCES Childbirths (id)
 );
 
+--====================
+-- Prescriptions Table
+--====================
 CREATE TABLE Prescriptions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT NULL,
@@ -57,6 +75,9 @@ CREATE TABLE Prescriptions (
         REFERENCES Newborn_Babies (id)
 );
 
+--====================
+-- Payments Table
+--====================
 CREATE TABLE Payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     prescription_id INT NULL,
