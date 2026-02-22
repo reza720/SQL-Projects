@@ -66,4 +66,4 @@
 
 ## Enhanced Entity–Relationship Diagram:
 
-![EER Diagram](EER%20Diagram.png)
+![EER Diagram](assets/EER%20Diagram.png)
