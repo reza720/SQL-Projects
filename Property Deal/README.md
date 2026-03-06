@@ -14,12 +14,12 @@
     - city (not null)
     - district (null allowed)
     - street (nul allowed)
-    - timestamp: create/update
+    - timestamp: create_at/update_at
     
   - **Categories**
     - name (pk)
     - description (not null)
-    - timestamp: create/update
+    - timestamp: create_at/update_at
 
   - **Properties**
     - id (Pk, auto increment)
@@ -29,31 +29,32 @@
     - owner (not null, fk:Users.email)
     - price (not null, min=0)
     - imageURL (not null)
-    - negotiable (not null)
-    - timestamp: create/update
+    - timestamp: create_at/update_at
 
   - **Offers**
     - id (pk)
     - property (not null, fk:properties.id)
     - user (not null, fk:Users.email)
     - amount (not null, min=0)
-    - timestamp: create/update
+    - timestamp: create_at/update_at
 
   - **Deals**
-    - id (pk)
-    - property (not null, fk:Properties.id)
+    - property (pk, fk:Properties.id)
     - date (not null)
     - amount (not null, min=10)
-    - timestamp: create/update
+    - timestamp: create_at/update_at
 
   - **Payments**
-    - deal (pk. fk:Deals.id)
+    - deal (pk. fk:Deals.property)
     - amount (not null, derived from Deals)
-    - timestamp: create/update
+    - timestamp: create_at/update_at
 
 - **Relationships**
-
-
+  - **Categories** -> **Properties** One-to-Many (1:n)
+  - **Users** -> **Properties** One-to-Many (1:n)
+  - **Properties** -> **Offers** One-to-Many (1:n)
+  - **Properties** <-> **Deals** One-to-One (1:1)
+  - **Deals** <-> **Payments** One-to-One (1:1)
 
 
 ## Entity–Relationship Diagram:
