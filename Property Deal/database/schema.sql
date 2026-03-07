@@ -75,6 +75,7 @@ CREATE TABLE Payments (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+-- Trigger for Calculating Amount of Payment After each Deal
 DELIMITER $$
 CREATE TRIGGER set_payment_amount
 BEFORE INSERT ON Payments
