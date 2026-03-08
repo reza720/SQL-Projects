@@ -8,20 +8,38 @@
 - **Entities & Attributes (Constraints, Indexes):**
   
   - **Buildings:**
-    - name (pk, digits + Alpha only) 
+    - name (pk, digits + alpha only) 
     - number_of_floors (not null, positive)
     - number_of_cells (not null, positive)
     - prisoners_capacity (not null, derived from number_of_cells * 4)
 
   - **Cells:**
+   - id (pk, auto)
+   - building (not null, fk: Buildings.name)
 
-  - **Staffs:**
+  - **Staff:**
+   - id (pk, auto)
+   - full_name (not null, letters and spaces only)
+   - role enum(guard, management, other), not null
+   - status enum(active, inactive, on_break), not null
+   - hire_date (not null)
 
   - **Prisoners:**
     - id (pk, auto)
-    - fullName (not null, letters and space only, indexed)
-    - 
-
-
+    - full_name (not null, letters and spaces only, indexed)
+    - charge_image_url (not null)
+    - entrance_date (not null)
+    - release_date (not null)
+    - building (not null, fk: Buildings.name)
+    - cell (not null, fk: Cells.id)
 
   - **Visits:**
+    - id (pk, auto)
+    - visitor (not null, letters and spaces only)
+    - prisoner (not null, fk: Prisoners.id)
+    - date (not null)
+
+- **Relationships**
+
+
+## Entity–Relationship Diagram:
