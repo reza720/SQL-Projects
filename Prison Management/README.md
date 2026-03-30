@@ -5,7 +5,7 @@
 - MySQL
 
 ## Data Model: 
-- **Entities & Attributes (Constraints):**
+- **Entities & Attributes:**
   
   - **Buildings:**
     - name (pk, digits + alpha only) 

@@ -9,7 +9,9 @@ Each project includes:
 ## README.md
 Contains:  
 - **Project Name & Short Description**  
-- **Data Model**: Entities, attributes, constraints, indexes (if any), and relationships  
+- **Tech Stack**
+- **Business Rules**
+- **Schema & Data Model**: Entities, attributes, and relationships  
 - **EER Diagram Images**: Visual representation of the database schema  
 
 ## Database

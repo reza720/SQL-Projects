@@ -28,3 +28,7 @@
  - Blood_Transfusion
 
 - **Relationships:**
+
+
+
+## Entity–Relationship Diagram:
