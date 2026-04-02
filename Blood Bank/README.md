@@ -1,34 +1,37 @@
-## Blood Bank
-- It collect, store and transfer blood.
+# Blood Bank
 
-## Tech Stack: 
-- MySQL
+## Conceptual Design
+### Scope:
+This system help to collect, test, store, and supply Blood
 
-## Business Rules
+### Business Rules:
 - A Donor donates blood, and the process is handled by Staff
-- Each Donation creates one or more Blood Units
+- Each Donation creates one Unit
 - Each Blood Unit has a Blood Type (A, B, AB, O with Rh factor)
 - Each Blood Unit is tested before it can be used
 - Each Blood Type is managed in Inventory
-- A Patient (or hospital) makes a Blood Request
+- A Patient makes a Blood Request
 - Each Transfusion is performed by Staff
 - After transfusion, the Blood Unit is removed from Inventory
 
-## Data Model: 
-- **Entities & Attributes:**
- - Bank_Staffs
- - Blood_Doners
- - Blood_Donations
- - Blood_Units
- - Blood_Types
- - Blood_Tests
- - Blood_Type_Inventory
- - Patients
- - Blood_Requests
- - Blood_Transfusion
+### Entities:
+- Bank_Staffs
+- Blood_Doners
+- Blood_Donations
+- Blood_Units
+- Blood_Types
+- Blood_Tests
+- Blood_Type_Inventory
+- Blood_Requests
+- Blood_Request_Units
+- Blood_Transfusion
 
-- **Relationships:**
+### Relationships:
+- Blood Donations happens with help of staffs by doners
+- Each Blood_Donation pass a Blood_Test and if Health become a Blood_Unit and added to Blood_Type_Inventory of a Blood_Type
+- Blood_Request comes to ask for Blood_Units, so Each Blood_Unit will be added to Blood_Request_Units, if that Blood_Request exist the Blood_Transfusion happens
+
+## Logical Design
 
 
-
-## Entity–Relationship Diagram:
+## Physical Design

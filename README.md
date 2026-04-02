@@ -1,32 +1,27 @@
 # Overview
-This repository contains **database-only projects** built using **SQL** and **NoSQL**.  
-Each project focuses on **schema design, data modeling, constraints, relationships, and SQL querying**.  
-There is **no API or frontend** included.
+This repository contains **Rational Database Only Projects**.
+Each Project focus on all three stages of **Database Design (Conceptual, Logical, and Physical)**, also includes **sql** files and **ERD** images. 
 
 # Project Contents
 Each project includes:
 
-## README.md
-Contains:  
-- **Project Name & Short Description**  
-- **Tech Stack**
-- **Business Rules**
-- **Schema & Data Model**: Entities, attributes, and relationships  
-- **EER Diagram Images**: Visual representation of the database schema  
+## README.md, Contains:  
+### Conceptual Design
+### Logical Design 
+### Physical Design
 
-## Database
+## SQL, Contains: 
 ### schema.sql
-Contains:  
-- All **table creation SQL scripts**, including constraints and indexes.  
-
+### views.sql  
+### transactions.sql 
+### access_control.sq 
 ### seed_data.sql
-Contains:  
-- **Sample data** for the database to test queries and validate relationships.
-
 ### Sample Queries
-Contains:
-- A few representative SQL queries  
+### procedures/            
+  ### anonymous_blocks.sql
+  ### stored_procedures.sql
+  ### stored_functions.sql
+  ### triggers.sql
 
-## Assets
-Contains:
-- Images of ERD/EERD
+## Assets, Contains:
+### Images of ERD/EERD
