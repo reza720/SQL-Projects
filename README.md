@@ -12,12 +12,12 @@ Each project includes:
 
 ## SQL, Contains: 
 ### schema.sql
-### views.sql  
-### transactions.sql 
-### access_control.sq 
+### views.sql  (if needed)
+### transactions.sql  (if needed)
+### access_control.sq (if needed)
 ### seed_data.sql
 ### Sample Queries
-### procedures/            
+### procedures/   (if needed)    
   ### anonymous_blocks.sql
   ### stored_procedures.sql
   ### stored_functions.sql
