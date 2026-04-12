@@ -1,11 +1,7 @@
-## These are simple database projects created for practicing database design and SQL.
+## Database Projects Based on Given Scenarios
+These projects are based on predefined scenarios for designing databases.
 
-The projects are inspired by exercises from AssignmentDude  
-(https://assignmentdude.com/database-project-ideas/?utm_source=chatgpt.com)  
-and are intended to improve skills in:
-
-- Database schema design  
-- Writing SQL queries  
-- Understanding relationships between tables  
-
-
+### Implementation Steps:
+- Implement logical design  
+- Implement physical design  
+- Use Data Manipulation Language (DML) to write some queries  
