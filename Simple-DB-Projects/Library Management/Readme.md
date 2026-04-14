@@ -8,6 +8,8 @@ The main objective of this database design project idea is help to 
 - Assisting easily in book searches and availability checks
 - It also helps to keep a record of the staff details and the fines paid by late returners 
 
+---
+
 ## Logical Design
 
 ### Entities and attriutes:
@@ -130,5 +132,7 @@ This Design has pass three normal form of normalization
     - Already in 2NF
     - There are no transitive dependencies between non-key attributes
 
+
+---
 
 ## Physical Design Considerations
