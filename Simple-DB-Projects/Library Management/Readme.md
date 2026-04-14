@@ -9,6 +9,7 @@ The main objective of this database design project idea is help to 
 - It also helps to keep a record of the staff details and the fines paid by late returners 
 
 ## Logical Design
+
 ### Entities and attriutes:
 
 - **Address**

@@ -1,27 +1,27 @@
 # Overview
-This repository contains **Rational Database Only Projects**.
-Each Project focus on all three stages of **Database Design (Conceptual, Logical, and Physical)**, also includes **sql** files and **ERD** images. 
+This repository contains Rational Database Only Projects.
+Each Project focus on all three stages of Database Design (Conceptual, Logical, and Physical), also includes sql files and ERD images. 
 
 # Project Contents
 Each project includes:
 
-## README.md, Contains:  
-### Conceptual Design
-### Logical Design 
-### Physical Design
+## README.md:  
+- Conceptual Design
+- Logical Design 
+- Physical Design
 
-## SQL, Contains: 
-### schema.sql
-### views.sql  (if needed)
-### transactions.sql  (if needed)
-### access_control.sq (if needed)
-### seed_data.sql
-### Sample Queries
-### procedures/   (if needed)    
-  ### anonymous_blocks.sql
-  ### stored_procedures.sql
-  ### stored_functions.sql
-  ### triggers.sql
+## SQL/: 
+- schema.sql
+- views.sql  (if needed)
+- transactions.sql  (if needed)
+- access_control.sq (if needed)
+- seed_data.sql
+- Sample Queries
+- procedures/   (if needed)    
+  - anonymous_blocks.sql
+  - stored_procedures.sql
+  - stored_functions.sql
+  - triggers.sql
 
-## Assets, Contains:
-### Images of ERD/EERD
+## Assets:
+- Images of ERD
