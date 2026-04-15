@@ -6,18 +6,18 @@ Each Project focus on all three stages of Database Design (Conceptual, Logical, 
 Each project includes:
 
 ## README.md:  
-- Conceptual Design
+- Scenario / Business Problem and its Conceptual Design
 - Logical Design 
-- Physical Design
+- Physical Design Considerations
 
 ## SQL/: 
 - schema.sql
-- views.sql  (if needed)
-- transactions.sql  (if needed)
-- access_control.sq (if needed)
+- views.sql  
+- transactions.sql  
+- access_control.sq 
 - seed_data.sql
-- Sample Queries
-- procedures/   (if needed)    
+- Sample Queries / Use Case Queries
+- procedures/    
   - anonymous_blocks.sql
   - stored_procedures.sql
   - stored_functions.sql
