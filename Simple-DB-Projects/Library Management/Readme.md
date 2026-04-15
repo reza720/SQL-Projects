@@ -132,7 +132,7 @@ The main objective of this database design project idea is help to 
 - Staff (1) ────< (N) Schedule
 - Staff (1) ────< (N) Log
 
-### ERD
+### Entity Relationship Diagram (ERD)
 
 ![ERD](assets/ERD.png)
 
@@ -156,3 +156,26 @@ This Design has pass three normal form of normalization
 
 
 ## Physical Design Considerations
+
+### Indexing Strategy
+In addition to automatically created indexes, the following indexes are defined to optimize query performance
+
+- **Address Table**
+    - Composite index on (city, district, street)  
+- **Person Table**
+    - Composite index on (firstname, last name)  
+- **Book Table**
+    - Index on genre id 
+    - Index on publisher id  
+    - Index on title 
+- **Book_Author Table**
+    - Index on author id: This index ensures optimized queries when filtering by author id alone
+- **Transaction Table**
+    - Index on member id  
+    - Index on book isbn    
+    - Composite index on (member id, is returned): Supports queries identifying returned vs. unreturned books per member.
+    - Composite index on (book isbn, is returned): Optimizes retrieval of return status for specific books.
+- **Schedule Table**
+    - Index on staff id
+- **Logs Table**
+    - Index on staff id
