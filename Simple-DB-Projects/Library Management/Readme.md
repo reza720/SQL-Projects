@@ -179,3 +179,24 @@ In addition to automatically created indexes, the following indexes are defined 
     - Index on staff id
 - **Logs Table**
     - Index on staff id
+
+### Partitioning of Large Tables
+In this database, no tables require partitioning due to data size; however, for learning purposes, partitioning strategies are applied to selected tables based on their access patterns.
+- **Address Table**
+    - Partitioned by province
+- **Author Table**
+    - Partitioned by date of birth
+- **Member Table**
+    - Partitioned by membership status
+    - Partitioned by membership type
+- **Staff Table**
+    - Partitioned by role
+- **Book Table**
+    - Partitioned by publisher id
+    - Partitioned by genre id
+    - Partitioned by publication year
+    - Partitioned by is available
+- **Transaction Table**
+    - Partitioned by book issue date
+- **Log Table**
+    - Partitioned by login time
