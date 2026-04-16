@@ -1,12 +1,12 @@
 # Overview
 This repository contains Rational Database Only Projects.
-Each Project focus on all three stages of Database Design (Conceptual, Logical, and Physical), also includes sql files and ERD images. 
+Each Project focus on Database Design both Logical and Physical, also includes sql files and ERD images. 
 
 # Project Contents
 Each project includes:
 
 ## README.md:  
-- Scenario / Business Problem and its Conceptual Design
+- Scenario / Business Problem 
 - Logical Design 
 - Physical Design Considerations
 

@@ -1,17 +1,12 @@
 ## Scenario
 ### Library Management Database System
-The library management system efficiently manages the library operations. In this database system, we store information about books, book names and numbers, details of the book borrower and library staff details, and so on. 
+The library management system efficiently manages the library operations. In this database system, we store information about books, book borrowers, and library staff, and so on. 
 
 The main objective of this database design project idea is help to 
 - Keep a record of the books available in the library 
 - Automate the process of book lending and returns
 - Assisting easily in book searches and availability checks
 - It also helps to keep a record of the staff details and the fines paid by late returners 
-
----
- 
-## Conceptual Design
-
 
 ---
 
@@ -118,24 +113,24 @@ The main objective of this database design project idea is help to 
     - update at (timestamp)
 
 ### Relationships
-- Person (1) ── (1) Author
-- Person (1) ── (1) Staff
-- Person (1) ── (1) Member
+- Person (1) ---- (1) Author -> One person is exactly one author, and one author is exactly one person.
+- Person (1) ---- (1) Staff -> One person is exactly one staff member, and one staff member is exactly one person.
+- Person (1) ---- (1) Member -> One person is exactly one member, and one member is exactly one person.
 
-- Member (1) ────< (N) Address
-- Staff  (1) ────< (N) Address
+- Member (1) ----< (N) Address -> One member can have many addresses, but each address belongs to one member.
+- Staff (1) ----< (N) Address -> One staff member can have many addresses, but each address belongs to one staff member.
 
-- Publisher (1) ────< (N) Book
-- Genre    (1) ────< (N) Book
+- Publisher (1) ----< (N) Book -> One publisher can publish many books, but each book belongs to one publisher.
+- Genre (1) ----<  (N) Book -> One genre can include many books, but each book belongs to one genre.
 
-- Book (M) ────< Book_Authors >──── (M) Author
+- Book (M) ----< Book_Authors >---- (M) Author -> One book can have many authors, and one author can write many books (many-to-many relationship resolved using a junction table).
 
-- Member (1) ────< (N) Transaction
-- Book   (1) ────< (N) Transaction
-- Transaction (1) ──── (0..1) Fine
+- Member (1) ----< (N) Transaction -> One member can make many transactions, but each transaction belongs to one member.
+- Book (1) ----< (N) Transaction -> One book can appear in many transactions, but each transaction is linked to one book.
+- Transaction (1) ---- (0..1) Fine -> A transaction may or may not have a fine, but each fine belongs to exactly one transaction.
 
-- Staff (1) ────< (N) Schedule
-- Staff (1) ────< (N) Log
+- Staff (1) ----< (N) Schedule -> One staff member can have many schedules, but each schedule belongs to one staff member.
+- Staff (1) ----< (N) Log -> One staff member can have many logs, but each log belongs to one staff member.
 
 ### Entity Relationship Diagram (ERD)
 
