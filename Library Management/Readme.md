@@ -220,3 +220,19 @@ In this database, no tables require partitioning due to data size; however, for 
     - Add Person, Staff, and Address
 - **Author Registration Transaction**
     - Add Person and Author
+
+### Defining Views
+- **member_details_view**
+    - Tables involved: Person, Member, and Address
+- **staff_details_view**
+    - Tables involved: Person, Staff, and Address
+- **author_details_view**
+    - Tables involved: Person and Author
+- **book_details_view**
+    - Tables involved: Book, Publisher, Genre, Book_Author, Author, and Person
+- **transaction_details_view**
+    - Tables involved: Transaction, Member, Person, and Book
+- **fine_details_view**
+    - Tables involved: Fine, Transaction, Member, Person, and Book
+- **staff_activity_view**
+    - Tables involved: Staff, Person, Logs, and Schedule
