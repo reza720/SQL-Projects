@@ -159,47 +159,47 @@ This Design has pass three normal form of normalization
 
 ### Defining Use Case Queries
 - **Staff Queries**
-    - Full Staff Profile: Person + Staff + Address
-    - List all Staff with full profile
-    - List Staff Logs
-    - List Staff Schedules
-    - Search Staff by fist name/last name/id
+    - Full Staff Profile by id: Person + Staff + Address
+    - List all Staff with full profile, supports(sorting & pagination)
+    - List Staff Logs, supports(sorting & pagination)
+    - List Staff Schedules, supports(sorting & pagination)
+    - Search Staff by fist name/last name, supports(sorting & pagination) 
 
 - **Member Queries**
-    - Full Member Profile: Person + Member + Address
-    - List all Member with full Profile
-    - List all Member transactions
-    - List all Member fines
-    - List Members based on membership type
-    - List Members based on membership status
-    - Search Member by first name/last name/id/email
+    - Full Member Profile by id/email: Person + Member + Address
+    - List all Member with full Profile, supports(sorting & pagination)
+    - List all Member transactions, supports(sorting & pagination)
+    - List all Member fines, supports(sorting & pagination)
+    - List Members based on membership type, supports(sorting & pagination)
+    - List Members based on membership status, supports(sorting & pagination)
+    - Search Member by first name/last name, supports(sorting & pagination)
 
 - **Book Queries**
-    - Full Book Profile: Book, Authors, Genre, Publisher
-    - List all Books with full profile
-    - List all book transactions
-    - List Books of an Author
-    - List Authors of a Book
-    - List Books based on publisher
-    - List Books based on genre
-    - List Books based on publication year
-    - List Books based on price range
-    - List all available Books
-    - Search Book by isbn/title
+    - Full Book Profile by isbn: Book, Authors, Genre, Publisher
+    - List all Books with full profile, supports(sorting & pagination)
+    - List all book transactions, supports(sorting & pagination)
+    - List Books of an Author, supports(sorting & pagination)
+    - List Authors of a Book, supports(sorting & pagination)
+    - List Books based on publisher, supports(sorting & pagination)
+    - List Books based on genre, supports(sorting & pagination)
+    - List Books based on publication year, supports(sorting & pagination)
+    - List Books based on price range, supports(sorting & pagination)
+    - List all available Books, supports(sorting & pagination)
+    - Search Book by title, supports(sorting & pagination)
 
 - **Other Queries**
-    - Full Profile of Author: Person + Author
-    - List all Authors with full profile
-    - List all Publishers
-    - List all Genres
-    - List all Transactions
-    - List all Fines
-    - List all unpaied/Paid Fines
-    - List all Schedules
-    - List all Logs
-    - Search Author by id/first name/last name
-    - Search Publisher by id/name
-    - Search Genre by id/name    
+    - Full Profile of Author by id: Person + Author
+    - List all Authors with full profile, supports(sorting & pagination)
+    - List all Publishers, supports(sorting & pagination)
+    - List all Genres, supports(sorting & pagination)
+    - List all Transactions, supports(sorting & pagination)
+    - List all Fines, supports(sorting & pagination)
+    - List all unpaied/Paid Fines,supports(sorting & pagination)
+    - List all Schedules, supports(sorting & pagination)
+    - List all Logs, supports(sorting & pagination)
+    - Search Author by first name/last name, supports(sorting & pagination) 
+    - Search Publisher by id/name, supports(sorting & pagination)
+    - Search Genre by id/name, supports(sorting & pagination)
 
 - **Dashboard Queries**
     - **Core**
