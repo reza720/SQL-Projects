@@ -323,6 +323,28 @@ In this database, no tables require partitioning due to data size; however, for 
 - **Author Registration Transaction**
     - Add Person and Author
 
+### Defining Stored Procedures
+- **Issue Book Procedure**
+    - Check book is available, Insert into Transaction, and Set is available = false
+- **Return Book Procedure**
+    - Update Transaction (set return date, is returned = true) and Set is available = true
+- **Fine Payment Procedure**
+    - Set is paid = true
+- **Member Registration Procedure**
+    - Add Person, Member, and Address
+- **Staff Registration Procedure**
+    - Add Person, Staff, and Address
+- **Author Registration Procedure**
+    - Add Person and Author
+
+### Defining Triggers
+Triggers automatically run the events of Transactions.
+- **Book Issue Trigger**
+    - Mark Book as unavailable
+- **Book Return Triggers**
+    - Mark Book as available
+
+
 ### Controlling Access of Users
 - **Admin**
     - Has full system privileges and can create, read, update, and delete all data across the system.
