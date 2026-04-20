@@ -10,7 +10,14 @@ The main objective of this database design project idea is help to 
 
 ---
 
+## Conceptual Design
+Understanding Domain entities and Their Relationships
+
+
+---
+
 ## Logical Design
+Turning the domain entities into database tables, one domain entity may become many database tables
 
 ### Entities and attriutes:
 
@@ -154,6 +161,7 @@ This Design has pass three normal form of normalization
 ---
 
 ## Physical Design Considerations
+Optimizing the database for performance, storage, and real world usage.
 
 ### Defining Use Case Queries
 - **Staff Queries**
@@ -270,43 +278,6 @@ In addition to automatically created indexes, the following indexes are defined 
 - **Logs Table**
     - Index on staff id
 
-### Partitioning of Large Tables
-In this database, no tables require partitioning due to data size; however, for learning purposes, partitioning strategies are applied to selected tables based on their access patterns.
-- **Address Table**
-    - Partitioned by province
-- **Author Table**
-    - Partitioned by date of birth
-- **Member Table**
-    - Partitioned by membership status
-    - Partitioned by membership type
-- **Staff Table**
-    - Partitioned by role
-- **Book Table**
-    - Partitioned by publisher id
-    - Partitioned by genre id
-    - Partitioned by publication year
-    - Partitioned by is available
-- **Transaction Table**
-    - Partitioned by book issue date
-- **Log Table**
-    - Partitioned by login time
-
-### Defining Views
-- **member_details_view**
-    - Tables involved: Person, Member, and Address
-- **staff_details_view**
-    - Tables involved: Person, Staff, and Address
-- **author_details_view**
-    - Tables involved: Person and Author
-- **book_details_view**
-    - Tables involved: Book, Publisher, Genre, Book_Author, Author, and Person
-- **transaction_details_view**
-    - Tables involved: Transaction, Member, Person, and Book
-- **fine_details_view**
-    - Tables involved: Fine, Transaction, Member, Person, and Book
-- **staff_activity_view**
-    - Tables involved: Staff, Person, Logs, and Schedule
-
 ### ACID Transactions
 - **Issue Book Transaction**
     - Check book is available, Insert into Transaction, and Set is available = false
@@ -335,13 +306,6 @@ Define a complete business action includes events may many transaction or one tr
     - Add Person, Staff, and Address
 - **Author Registration Procedure**
     - Add Person and Author
-
-### Defining Triggers
-Triggers automatically run the events of Transactions.
-- **Book Issue Trigger**
-    - Mark Book as unavailable
-- **Book Return Triggers**
-    - Mark Book as available
 
 ### Defining Stored Functions
 - **Total Authors Function**
@@ -387,8 +351,66 @@ Triggers automatically run the events of Transactions.
 - **Available Books Percentage Function**
     - Returns percentage of available books
 
+### Defining Triggers
+Triggers automatically run the events of Transactions.
+- **Book Issue Trigger**
+    - Mark Book as unavailable
+- **Book Return Triggers**
+    - Mark Book as available
+
+### Defining Views
+- **member_details_view**
+    - Tables involved: Person, Member, and Address
+- **staff_details_view**
+    - Tables involved: Person, Staff, and Address
+- **author_details_view**
+    - Tables involved: Person and Author
+- **book_details_view**
+    - Tables involved: Book, Publisher, Genre, Book_Author, Author, and Person
+- **transaction_details_view**
+    - Tables involved: Transaction, Member, Person, and Book
+- **fine_details_view**
+    - Tables involved: Fine, Transaction, Member, Person, and Book
+- **staff_activity_view**
+    - Tables involved: Staff, Person, Logs, and Schedule
+
+### Partitioning of Large Tables
+In this database, no tables require partitioning due to data size; however, for learning purposes, partitioning strategies are applied to selected tables based on their access patterns.
+- **Address Table**
+    - Partitioned by province
+- **Author Table**
+    - Partitioned by date of birth
+- **Member Table**
+    - Partitioned by membership status
+    - Partitioned by membership type
+- **Staff Table**
+    - Partitioned by role
+- **Book Table**
+    - Partitioned by publisher id
+    - Partitioned by genre id
+    - Partitioned by publication year
+    - Partitioned by is available
+- **Transaction Table**
+    - Partitioned by book issue date
+- **Log Table**
+    - Partitioned by login time
+
 ### Controlling Access of Users
 - **Admin**
     - Has full system privileges and can create, read, update, and delete all data across the system.
 - **Employee**
     - Has restricted access, Cannot manage staff, log, and schedul.
+
+---
+
+## Implementation Order
+1. **Tables + Indexing**  
+2. **ACID Transactions**  
+3. **Partitioning**  
+4. **Views**  
+5. **Stored Functions**  
+6. **Stored Procedures**  
+7. **Triggers**  
+8. **Access Control**  
+9. **Use Case Queries**  
+
