@@ -91,7 +91,7 @@ The main objective of this database design project idea is help to 
     - update at (timestamp)
 
 - **Fine**
-    - transaction id (PK, FK -> Transactions.id)
+    - book transaction id (PK, FK -> Transactions.id)
     - amount (decimal, not null, default: 0)
     - is paid (boolean, not null, default: false)
 
