@@ -13,6 +13,24 @@ The main objective of this database design project idea is help to 
 ## Conceptual Design
 Understanding Domain entities and Their Relationships
 
+### Domain Objects and Their Attributes
+- **Member**
+    - Full name
+    - Address
+    - Phone number
+- **Book**
+    - Title
+    - Author
+    - Genre
+    - Publisher
+- **Staff**
+    - Full name
+    - Schedule
+    - Logs
+
+### Relationships Between Domain Objects
+- Members borrow books
+- Staff manage books and members
 
 ---
 
