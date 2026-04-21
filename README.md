@@ -1,6 +1,8 @@
 # Overview
-This repository contains relational database projects that focus on full database design.  
-Each project covers conceptual, logical, and physical design stages and includes SQL files and ERD diagrams.
+This repository contains relational database projects that focus on complete database-driven system design without a dedicated application layer.
+Each project covers the conceptual, logical, and physical design stages, and includes SQL scripts and ERD diagrams.
+
+The database is treated as the core of the system, implementing not only data storage but also business logic using features such as views, stored procedures, functions, triggers, transactions, access control, and use-case queries.
 
 # Project Contents
 Each project includes:
