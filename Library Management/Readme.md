@@ -178,10 +178,10 @@ This Design has pass three normal form of normalization
 
 ---
 
-## Physical Design Considerations
+## Physical Design 
 Optimizing the database for performance, storage, and real world usage.
 
-### Defining Use Case Queries
+### Use Case Queries
 - **Staff Queries**
     - Full Staff Profile by id: Person + Staff + Address
     - List all Staff with full profile, supports(sorting & pagination)
@@ -273,7 +273,7 @@ Optimizing the database for performance, storage, and real world usage.
         - Compare membership types by their total of Transactions
         - Compare Genre based on their Transactions
 
-### Indexing
+### Indexing Strategy
 In addition to automatically created indexes, the following indexes are defined to optimize Use Case Queries performance
 
 - **Address Table**
@@ -296,7 +296,7 @@ In addition to automatically created indexes, the following indexes are defined 
 - **Logs Table**
     - Index on staff id
 
-### ACID Transactions
+### Transactional Operations
 - **Issue Book Transaction**
     - Check book is available, Insert into Transaction, and Set is available = false
 - **Return Book Transaction**
@@ -310,22 +310,17 @@ In addition to automatically created indexes, the following indexes are defined 
 - **Author Registration Transaction**
     - Add Person and Author
 
-### Defining Stored Procedures
-Define a complete business action includes events may many transaction or one transaction or other events
-- **Issue Book Procedure**
-    - Check book is available, Insert into Transaction, and Set is available = false
-- **Return Book Procedure**
-    - Update Transaction (set return date, is returned = true) and Set is available = true
-- **Fine Payment Procedure**
-    - Set is paid = true
-- **Member Registration Procedure**
-    - Add Person, Member, and Address
-- **Staff Registration Procedure**
-    - Add Person, Staff, and Address
-- **Author Registration Procedure**
-    - Add Person and Author
+### Transactional Procedure Layer
+For each Transaction define a stored procedure
+- Issue Book Procedure
+- Return Book Procedure
+- Fine Payment Procedure
+- Member Registration Procedure
+- Staff Registration Procedure
+- Author Registration Procedure
 
-### Defining Stored Functions
+### Database Utility Functions
+Use Stored Functions as helper functions for calculations
 - **Total Authors Function**
     - Returns total number of authors
 - **Total Members Function**
@@ -369,14 +364,15 @@ Define a complete business action includes events may many transaction or one tr
 - **Available Books Percentage Function**
     - Returns percentage of available books
 
-### Defining Triggers
-Triggers automatically run the events of Transactions.
+### Event-Driven Database Rules
+Use Triggers to automatically run the events of Transactions.
 - **Book Issue Trigger**
     - Mark Book as unavailable
 - **Book Return Triggers**
     - Mark Book as available
 
-### Defining Views
+### Logical Data Views
+Create views to simplify data reading queries
 - **member_details_view**
     - Tables involved: Person, Member, and Address
 - **staff_details_view**
@@ -392,7 +388,7 @@ Triggers automatically run the events of Transactions.
 - **staff_activity_view**
     - Tables involved: Staff, Person, Logs, and Schedule
 
-### Partitioning of Large Tables
+### Table Partitioning Strategy
 In this database, no tables require partitioning due to data size; however, for learning purposes, partitioning strategies are applied to selected tables based on their access patterns.
 - **Address Table**
     - Partitioned by province
@@ -413,7 +409,7 @@ In this database, no tables require partitioning due to data size; however, for 
 - **Log Table**
     - Partitioned by login time
 
-### Controlling Access of Users
+### Role-Based Access Control
 - **Admin**
     - Has full system privileges and can create, read, update, and delete all data across the system.
 - **Employee**
@@ -423,13 +419,11 @@ In this database, no tables require partitioning due to data size; however, for 
 
 ## Implementation Order
 In a relational database management system (RDBMS), implement this database using the following steps:
-1. **Tables + Indexing**  
-2. **ACID Transactions**  
-3. **Partitioning**  
-4. **Views**  
-5. **Stored Functions**  
-6. **Stored Procedures**  
-7. **Triggers**  
-8. **Access Control**  
-9. **Use Case Queries**  
+1. Tables + Indexing + Partitioning  
+2. Views  
+3. Stored Functions  
+4. Stored Procedures + Transactions  
+5. Triggers  
+6. Access Control  
+7. Use Case Queries  
 

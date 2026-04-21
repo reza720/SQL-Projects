@@ -12,17 +12,14 @@ Each project includes:
 - Physical Design Considerations
 
 ## SQL/: 
-- schema.sql
+- schema.sql: Tables, Indexes, and Partitioning
 - views.sql  
-- transactions.sql  
+- transactional_procedure.sql  
 - access_control.sq 
 - seed_data.sql
-- Sample Queries / Use Case Queries
-- procedures/    
-  - anonymous_blocks.sql
-  - stored_procedures.sql
-  - stored_functions.sql
-  - triggers.sql
+- Sample Queries / Use Case Queries.sql
+- utility_functions.sql
+- triggers.sql
 
 ## Assets:
 - Images of ERD
