@@ -297,9 +297,10 @@ In addition to automatically created indexes, the following indexes are defined 
     - Index on staff id
 
 ### Table Partitioning Strategy
-In this database, no tables require partitioning due to data size; however, for learning purposes, partitioning strategies are applied to selected tables based on their access patterns.
+In this database, no tables require partitioning due to data size; however, for learning purposes, partitioning strategies can be applied as follow based on their access patterns. 
+Since these columns are not part of the primary key, MySQL does not support this partitioning, but some DBMSs like PostgreSQL can handle it. 
 - **Address Table**
-    - Partitioned by province
+    - Partitioned by province: Supported in PostgreSQL, but not in MySQL.
 - **Author Table**
     - Partitioned by date of birth
 - **Member Table**
@@ -311,28 +312,35 @@ In this database, no tables require partitioning due to data size; however, for 
     - Partitioned by publisher id
     - Partitioned by genre id
     - Partitioned by publication year
-    - Partitioned by is available
 - **Transaction Table**
     - Partitioned by book issue date
 - **Log Table**
     - Partitioned by login time
 
 ### Logical Data Views
-Create views to simplify data reading queries
-- **member_details_view**
-    - Tables involved: Person, Member, and Address
-- **staff_details_view**
-    - Tables involved: Person, Staff, and Address
-- **author_details_view**
-    - Tables involved: Person and Author
-- **book_details_view**
-    - Tables involved: Book, Publisher, Genre, Book_Author, Author, and Person
-- **transaction_details_view**
-    - Tables involved: Transaction, Member, Person, and Book
-- **fine_details_view**
-    - Tables involved: Fine, Transaction, Member, Person, and Book
-- **staff_activity_view**
-    - Tables involved: Staff, Person, Logs, and Schedule
+To simplify data retrieval for use case queries that require joins, create views.
+- **Staff Views**
+    - Full Staff Profile: Person + Staff + Address
+    - Staff List: Basic info of Staff
+    - Staff Logs: Person + Staff + Log
+    - Staff Schedules: Person + Staff + Schedule
+- **Member Views**
+    - Full Member Profile: Person + Member + Address
+    - Member List: Basic info of Member
+    - Member Transactions: Member + Transaction + Book
+    - Member Fines: Fine + Transaction + Member
+- **Book Views**
+    - Full Book Profile: Book + Publisher + Genre
+    - Book List: Basic info of Book
+    - Book Transactions: Book + Transaction + Member
+    - Book Authors: Book_Author + Person
+    - Available Books: filtered Book 
+- **Other Views**
+    - Full Author Profile: Person + Author
+    - Transactions: Book_Transaction + Member + Book
+    - Fines: Fine + Transaction + Member
+    - Logs: Log + Staff + Person
+    - Schedules: Schedule + Staff + Person
 
 ### Database Utility Functions
 Use Stored Functions as helper functions for calculations
