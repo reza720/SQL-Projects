@@ -182,7 +182,7 @@ This Design has pass three normal form of normalization
 Optimizing the database for performance, storage, and real business usage.
 
 ### Use Case Queries
-Business needs that the database must support.
+Business needs that the database must support. 
 - **Staff Queries**
     - Full Staff Profile by id: Person + Staff + Address
     - List all Staff with full profile, supports(sorting & pagination)
