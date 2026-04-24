@@ -335,48 +335,12 @@ To simplify data retrieval for use case queries that require joins, create views
 
 ### Database Utility Functions
 Use stored functions as reusable helper functios for calculations in use case queries specifically Dashboard Queries that require computed results.
-- **Total Authors Function**
-    - Returns total number of authors
-- **Total Members Function**
-    - Returns total number of members
-- **Total Books Function**
-    - Returns total number of books
-- **Total Transactions Function**
-    - Returns total number of transactions
-- **Total Publishers Function**
-    - Returns total number of publishers
-- **Total Genres Function**
-    - Returns total number of genres
-- **Available Books Count Function**
-    - Returns number of available books
-- **Unavailable Books Count Function**
-    - Returns number of unavailable books
-- **Total Fines Amount Function**
-    - Returns sum of all fines
-- **Unpaid Fines Count Function**
-    - Returns number of unpaid fines
+For simple calculations don’t need SQL functions and are better written directly inside queries.
 - **Member Total Fine Function**
-    - Returns total fines for a specific member
-- **Minimum Book Price Function**
-    - Returns lowest book price
-- **Maximum Book Price Function**
-    - Returns highest book price
-- **Average Book Price Function**
-    - Returns average book price
-- **Book Price Variance Function**
-    - Returns variance of book prices
-- **Book Price Standard Deviation Function**
-    - Returns standard deviation of book prices
-- **Member Transaction Count Function**
-    - Returns total transactions for a member
+- **Member Transaction Count Function** 
 - **Member Active Status Function**
-    - Returns whether a member is active
 - **Book Availability Check Function**
-    - Returns whether a book is available
-- **Transaction Overdue Function**
-    - Returns whether a transaction is overdue
-- **Available Books Percentage Function**
-    - Returns percentage of available books
+- **Transaction Overdue Check Function**
 
 ### Transactional Operations
 - **Issue Book Transaction**
