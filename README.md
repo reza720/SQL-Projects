@@ -1,20 +1,20 @@
 # Overview
 This repository contains SQL database projects.
 Each project covers
-- **Conceptual Design:** Understand the Domain Objects, their Attributes, and their relationships, also we define the use case queries in this stage.
+- **Conceptual Design:** Understand the domain objects, their attributes, and their relationships, also we define the use case queries in this stage.
 - **Logical Design:** Convert the conceptual model into a relational schema.
 - **Physical Design:** Optimize structures for performance, storage efficiency, and workload requirements
 - **Implementation:** Write the SQL code for the Database Design and How the database behaves when users interact with it.
 
 # Project Structure
-## README.md:  
+## README.md
 - Scenario / Business Problem 
 - Conceptual Design
 - Logical Design 
 - Physical Design 
 - Implementation Notes
 
-## SQL/: 
+## SQL/
 - schema.sql: Includes (Tables, Indexes, and Partitioning)
 - views.sql  
 - transactional_procedure.sql  
@@ -24,5 +24,5 @@ Each project covers
 - utility_functions.sql
 - triggers.sql
 
-## Assets:
+## Assets
 - Images of ERD
