@@ -247,29 +247,26 @@ The main objective of this database design project idea is help to 
     - id (PK, surrogate key)
     - staff_id (number, mandatory, FK -> Staff.id, on delete:cascade) 
     - login_time (datetime, mandatory)
-    - logout_time (datetime, optional, logout time > login time)
+    - logout_time (datetime, optional)
     - created_at (timestamp, mandatory)
 
 ### Normalization Summary
-This Design has pass three normal form of normalization  
-- **1NF:**
-    - Each table has a primary key that uniquely identifies each row
-    - All attributes contain atomic/indivisible values
-    - There are no repeating groups attributes
-- **2NF:**
-    - Already in 1NF
-    - No partial dependencies exist in any table
-- **3NF:**
-    - Already in 2NF
-    - There are no transitive dependencies between non-key attributes
+The logical design has been normalized up to Third Normal Form (3NF):
+- **First Normal Form (1NF)**:
+    - Each table has a defined primary key that uniquely identifies every row.
+    - All attributes contain atomic (indivisible) values.
+    - No repeating groups attributes exist.
+- **Second Normal Form (2NF):**
+    - The design satisfies all conditions of 1NF.
+    - No partial dependencies are present; every non-key attribute is fully dependent on the entire primary key.
+- **Third Normal Form (3NF):**
+    - The design satisfies all conditions of 2NF.
+    - No transitive dependencies exist; non-key attributes depend only on the primary key.
 
 ---
 
 ## Physical Design 
-
 ### Indexing Strategy
-In addition to automatically created indexes, the following indexes are defined to optimize Use Case Queries performance
-
 - **Address Table**
     - Composite index on (province, district, street)  
 - **Person Table**
@@ -289,7 +286,6 @@ In addition to automatically created indexes, the following indexes are defined 
     - Index on staff id
 - **Logs Table**
     - Index on staff id
-
 ### Table Partitioning Strategy
 In this database, no tables require partitioning due to data size; however, for learning purposes, partitioning strategies can be applied as follow based on their access patterns. 
 Since these columns are not part of the primary key, MySQL does not support this partitioning, but some DBMSs like PostgreSQL can handle it. 
@@ -310,11 +306,6 @@ Since these columns are not part of the primary key, MySQL does not support this
     - Partitioned by book issue date
 - **Log Table**
     - Partitioned by login time
-
-- **Admin**
-    - Has full system privileges and can create, read, update, and delete all data across the system.
-- **Employee**
-    - Has restricted access, Cannot manage staff, log, and schedul.
 
 ---
 
@@ -375,3 +366,7 @@ Use Triggers to automatically run the events of Transactions.
     - Mark Book as available
 
 ### Role-Based Access Control
+- **Admin**
+    - Has full system privileges and can create, read, update, and delete all data across the system.
+- **Employee**
+    - Has restricted access, Cannot manage staff, log, and schedul.
