@@ -165,8 +165,16 @@ The main objective of this database design project idea is help to 
 ---
 
 ## Logical Design
-
 ### Tables
+Handle 
+- Junction Table
+- PK
+- FK
+- Derived Attributes
+- Optionality: madatory/optional
+- Attributes Domain: High Level Types + Constraints 
+- Timestamp
+- Referential Actions: On Delete, On Update
 - **Address**
     - address_id (PK, surrogate key)
     - province (text, mandatory)
@@ -177,10 +185,10 @@ The main objective of this database design project idea is help to 
     - update_at (timestamp)
 - **Person**
     - id (PK, surrogate key)
-    - first name (text, not null)
-    - last name (text, not null)
-    - created at (timestamp)
-    - update at (timestamp)
+    - first_name (text, mandatory, only alphabet and space)
+    - last_name (text, mandatory, only alphabet and space)
+    - created_at (timestamp)
+    - update_at (timestamp)
 - **Author**
     - id (number, PK, FK -> Person.id, on delete:cascade)
     - date of birth (date, nullable)
