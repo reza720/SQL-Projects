@@ -166,100 +166,89 @@ The main objective of this database design project idea is help to 
 
 ## Logical Design
 ### Tables
-Handle 
-- Junction Table
-- PK
-- FK
-- Derived Attributes
-- Optionality: madatory/optional
-- Attributes Domain: High Level Types + Constraints 
-- Timestamp
-- Referential Actions: On Delete, On Update
 - **Address**
     - address_id (PK, surrogate key)
     - province (text, mandatory)
     - district (text, mandatory)
     - street (text, mandatory)
     - house_number (text, mandatory)
-    - created_at (timestamp)
-    - update_at (timestamp)
+    - created_at (timestamp, mandatory)
+    - update_at (timestamp, mandatory)
 - **Person**
     - id (PK, surrogate key)
     - first_name (text, mandatory, only alphabet and space)
     - last_name (text, mandatory, only alphabet and space)
-    - created_at (timestamp)
-    - update_at (timestamp)
+    - created_at (timestamp, mandatory)
+    - update_at (timestamp, mandatory)
 - **Author**
     - id (number, PK, FK -> Person.id, on delete:cascade)
-    - date of birth (date, nullable)
-    - created at (timestamp)
-    - update at (timestamp)
+    - date_of_birth (date, mendatory)
+    - created_at (timestam, mandatory)
+    - update_at (timestamp, mandatory)
 - **Member**
     - id (number, PK, FK -> Person.id, on delete:cascade)
-    - email (text, not null, unique)
-    - membership type (values:Basic/Standard/Premium, not null, default: Basic)
-    - address id (number, not null, FK -> Addresses.id)
-    - phone number (text, not null, length = 12)
-    - membership status (values:Active/Expired, not null, default: Active)
-    - created at (timestamp)
-    - update at (timestamp)
+    - email (text, mandatory, unique)
+    - membership_type (values:Basic/Standard/Premium, mandatory, default: Basic)
+    - address_id (number, mandatory, FK -> Addresses.id)
+    - phone number (text, mandatory, length = 12)
+    - membership_status (values:Active/Expired, mandatory, default: Active)
+    - created_at (timestamp, mandatory)
+    - update_at (timestamp, mandatory)
 - **Staff**
     - id (number, PK, FK -> Person.id, on delete:cascade)
-    - address id (number, not null, FK -> Addresses.id)
-    - role (values:Admin/Employee, not null, default:Employee)
-    - created at (timestamp)
-    - update at (timestamp)
+    - address_id (number, mandatory, FK -> Addresses.id)
+    - role (values:Admin/Employee, mandatory, default:Employee)
+    - created_at (timestamp, mandatory)
+    - updated_at (timestamp, mandatory)
 - **Publisher**
     - id (PK, surrogate key)
-    - name (text, unique, not null)
-    - establish year (year date, nullable)
+    - name (text, unique, mandatory)
+    - establish_year (year, optional)
 - **Genre**
     - id (PK, surrogate key)
-    - name (text, not null, unique)
-    - description (text, nullable)
+    - name (text, mandatory, unique)
+    - description (text, optional)
 - **Book**
     - isbn (text, PK)
-    - title (text, not null)
-    - publisher id (number, not null, FK -> Publishers.id)
-    - genre id (number, not null, FK -> Genres.id)
-    - publication year (year, nullable)
-    - edition (number, not nullable)
-    - price (Decimal, not null, price > 0)
-    - is_available (boolean, not null, default: true)
-    - created at (timestamp)
-    - update at (timestamp)
+    - title (text, mandatory)
+    - publisher_id (number, mandatory, FK -> Publishers.id)
+    - genre_id (number, mandatory, FK -> Genres.id)
+    - publication_year (year, optional)
+    - edition (number, optional)
+    - price (Decimal, mandatory, price > 0)
+    - is_available (boolean, mandatory, default: true)
+    - created_at (timestamp, mandatory)
+    - update_at (timestamp, mandatory)
 - **Book_Author**
-    - book isbn (text, not null, FK -> Book.ISBN)
-    - author id (number, not null, FK -> Authors.id)
+    - book_isbn (text, mandatory, FK -> Book.ISBN)
+    - author_id (number, mandatory, FK -> Authors.id)
     - PK (book isbn, author id)
 - **Book_Transaction**
     - id (PK, surrogate key)
-    - member id (number, not null, FK -> Members.id) 
-    - book isbn (text, not null, FK -> Books.ISBN)
-    - book issue date (date, not null, default: current date)
-    - due_date (date, not null)
-    - is returned (boolean, not null, default: false)
-    - created at (timestamp)
-    - update at (timestamp)
+    - member_id (number, mandatory, FK -> Members.id) 
+    - book_isbn (text, mandatory, FK -> Books.ISBN)
+    - book_issue_date (date, mandatory, default: current date)
+    - due_date (date, mandatory)
+    - is_returned (boolean, mandatory, default: false)
+    - created_at (timestamp, mandatory)
 - **Fine**
     - book transaction id (PK, FK -> Transactions.id)
-    - amount (decimal, not null, default: 0)
-    - is paid (boolean, not null, default: false)
+    - amount (decimal, mandatory, default: 0), Derived from days pass due date of transaction but not returned: days * 5
+    - is_paid (boolean, mandatory, default: false)
+    - created_at (timestamp, mandatory)
 - **Schedule**
     - id (PK, surrogate key)
-    - staff id (number, not null, FK -> Staff.id, on delete: cascade)
-    - day of week (values: days of week, not null)
-    - start time (time, not null)
-    - end time (time, not null)
-    - created at (timestamp)
-    - update at (timestamp)
+    - staff_id (number, mandatory, FK -> Staff.id, on delete: cascade)
+    - day_of_week (values: days of week, mandatory)
+    - start_time (time, mandatory)
+    - end_time (time, mandatory)
+    - created_at (timestamp, mandatory)
 - **Log**
     - id (PK, surrogate key)
-    - staff id (number, not null, FK -> Staff.id, on delete:cascade) 
-    - login time (datetime, not null)
-    - logout time (datetime, nullable, logout time > login time)
-    - created at (timestamp)
-    - update at (timestamp)
+    - staff_id (number, mandatory, FK -> Staff.id, on delete:cascade) 
+    - login_time (datetime, mandatory)
+    - logout_time (datetime, optional, logout time > login time)
+    - created_at (timestamp, mandatory)
 
 ### Normalization Summary
 This Design has pass three normal form of normalization  
