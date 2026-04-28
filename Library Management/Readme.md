@@ -167,88 +167,88 @@ The main objective of this database design project idea is help to 
 ## Logical Design
 ### Tables
 - **Address**
-    - address_id (PK, surrogate key)
-    - province (text, mandatory)
-    - district (text, mandatory)
-    - street (text, mandatory)
-    - house_number (text, mandatory)
-    - created_at (timestamp, mandatory)
-    - update_at (timestamp, mandatory)
+    - address_id - Surrogate PK, INTEGER, 
+    - province- VARCHAR, Mandatory, 
+    - district - VARCHAR, Mandatory
+    - street - VARCHAR, Mandatory
+    - house_number - VARCHAR, Mandatory
+    - created_at - TIMESTAMP, Mandatory
+    - update_at - TIMESTAMP, Mandatory
 - **Person**
-    - id (PK, surrogate key)
-    - first_name (text, mandatory, only alphabet and space)
-    - last_name (text, mandatory, only alphabet and space)
-    - created_at (timestamp, mandatory)
-    - update_at (timestamp, mandatory)
+    - id - Surrogate PK, INTEGER, 
+    - first_name - VARCHAR, Mandatory,  only alphabet and space
+    - last_name - VARHCAR, Mandatory, only alphabet and space
+    - created_at - TIMESTAMP, Mandatory
+    - update_at - TIMESTAMP, Mandatory
 - **Author**
-    - id (number, PK, FK -> Person.id, on delete:cascade)
-    - date_of_birth (date, mendatory)
-    - created_at (timestam, mandatory)
-    - update_at (timestamp, mandatory)
+    - id - PK, INTEGER,  Each Author inherits its unique identifier from its supertype(Person), PK, FK -> Person.id, on delete:cascade, number
+    - date_of_birth - DATE, Mandatory
+    - created_at - TIMESTAMP, Mandatory
+    - update_at - TIMESTAMP, Mandatory
 - **Member**
-    - id (number, PK, FK -> Person.id, on delete:cascade)
-    - email (text, mandatory, unique)
-    - membership_type (values:Basic/Standard/Premium, mandatory, default: Basic)
-    - address_id (number, mandatory, FK -> Addresses.id)
-    - phone number (text, mandatory, length = 12)
-    - membership_status (values:Active/Expired, mandatory, default: Active)
-    - created_at (timestamp, mandatory)
-    - update_at (timestamp, mandatory)
+    - id - PK, INTEGER, FK -> Person.id, on delete:cascade, number
+    - email - VARCHAR, (mandatory, text, unique)
+    - membership_type ENUM:Basic/Standard/Premium,  mandatory, default: Basic)
+    - address_id - INTEGER, mandatory, FK -> Addresses.id)
+    - phone number- VARCHAR, mandatory, length = 12)
+    - membership_status - ENUM:Active/Expired, mandatory, default: Active)
+    - created_at - TIMESTAMP, (timestamp, mandatory)
+    - update_at - TIMESTAMP, (timestamp, mandatory)
 - **Staff**
-    - id (number, PK, FK -> Person.id, on delete:cascade)
-    - address_id (number, mandatory, FK -> Addresses.id)
-    - role (values:Admin/Employee, mandatory, default:Employee)
-    - created_at (timestamp, mandatory)
-    - updated_at (timestamp, mandatory)
+    - id - PK, INTEGER< FK -> Person.id, on delete:cascade)
+    - address_id - INTEGER,  (number, mandatory, FK -> Addresses.id)
+    - role - ENUM:Admin/Employee, mandatory, default:Employee)
+    - created_at - TIMESTAMP,  (timestamp, mandatory)
+    - updated_at - TIMESTAMP, (timestamp, mandatory)
 - **Publisher**
-    - id (PK, surrogate key)
-    - name (text, unique, mandatory)
-    - establish_year (year, optional)
+    - id - Surrogate PK, INTEGER, 
+    - name - VARCHAR, unique, mandatory)
+    - establish_year - YEAR, optional)
 - **Genre**
-    - id (PK, surrogate key)
-    - name (text, mandatory, unique)
-    - description (text, optional)
+    - id - Surrogate PK, INTEGER, 
+    - name - VARCHAR, (text, mandatory, unique)
+    - description - TEXT, (text, optional)
 - **Book**
-    - isbn (text, PK)
-    - title (text, mandatory)
-    - publisher_id (number, mandatory, FK -> Publishers.id)
-    - genre_id (number, mandatory, FK -> Genres.id)
-    - publication_year (year, optional)
-    - edition (number, optional)
-    - price (Decimal, mandatory, price > 0)
-    - is_available (boolean, mandatory, default: true)
-    - created_at (timestamp, mandatory)
-    - update_at (timestamp, mandatory)
+    - isbn - PK, INTEGER, 
+    - title - VARCHAR, (text, mandatory)
+    - publisher_id - INTEGER, (number, mandatory, FK -> Publishers.id)
+    - genre_id -  INTEGER, (number, mandatory, FK -> Genres.id)
+    - publication_year - YEAR, (year, optional)
+    - edition - INTEGER, (number, optional)
+    - price - DECIMAL, (Decimal, mandatory, price > 0)
+    - is_available - BOOLEAN,  (boolean, mandatory, default: true)
+    - created_at - TIMESTAMP, (timestamp, mandatory)
+    - update_at - TIMESTAMP,  (timestamp, mandatory)
 - **Book_Author**
-    - book_isbn (text, mandatory, FK -> Book.ISBN)
-    - author_id (number, mandatory, FK -> Authors.id)
-    - PK (book isbn, author id)
+    - book_isbn - VARCHAR,  (text, mandatory, FK -> Book.ISBN)
+    - author_id - INTEGER, (number, mandatory, FK -> Authors.id)
+    - PK (book_isbn, author_id)
 - **Book_Transaction**
-    - id (PK, surrogate key)
-    - member_id (number, mandatory, FK -> Members.id) 
-    - book_isbn (text, mandatory, FK -> Books.ISBN)
-    - book_issue_date (date, mandatory, default: current date)
-    - due_date (date, mandatory)
-    - is_returned (boolean, mandatory, default: false)
-    - created_at (timestamp, mandatory)
+    - id - Surrogate PK, INTEGER, 
+    - member_id - INTEGER, (number, mandatory, FK -> Members.id) 
+    - book_isbn - VARCHAR,  (text, mandatory, FK -> Books.ISBN)
+    - book_issue_date - DATE, (date, mandatory, default: current date)
+    - due_date - DATE,  (date, mandatory)
+    - is_returned - BOOLEAN,  (boolean, mandatory, default: false)
+    - created_at - TIMESTAMP, (timestamp, mandatory)
 - **Fine**
-    - book transaction id (PK, FK -> Transactions.id)
-    - amount (decimal, mandatory, default: 0), Derived from days pass due date of transaction but not returned: days * 5
-    - is_paid (boolean, mandatory, default: false)
-    - created_at (timestamp, mandatory)
+    - book_transaction_id - Surrogate PK, INTEGER, FK -> Transactions.id)
+    - amount - DECIMAL, (decimal, mandatory, default: 0), Derived from days pass due date of transaction but not returned: days * 5
+    - is_paid - BOOLEAN, (boolean, mandatory, default: false)
+    - created_at - TIMESTAMP
 - **Schedule**
-    - id (PK, surrogate key)
-    - staff_id (number, mandatory, FK -> Staff.id, on delete: cascade)
-    - day_of_week (values: days of week, mandatory)
-    - start_time (time, mandatory)
-    - end_time (time, mandatory)
-    - created_at (timestamp, mandatory)
+    - id - Surrogate PK, INTEGER, 
+    - staff_id - INTEGER, (number, mandatory, FK -> Staff.id, on delete: cascade)
+    - day_of_week - ENUM:days of week, mandatory)
+    - start_time - TIME, (time, mandatory)
+    - end_time - TIMESTAMP
+    - created_at - TIMESTAMP 
 - **Log**
-    - id (PK, surrogate key)
-    - staff_id (number, mandatory, FK -> Staff.id, on delete:cascade) 
-    - login_time (datetime, mandatory)
-    - logout_time (datetime, optional)
-    - created_at (timestamp, mandatory)
+    - id - Surrogate PK, INTEGER; System generated unique identifier for each staff log
+    - staff_id - INTEGER, FK(Staff.id), on delete:cascade, Refernce the Long to a Staff (number, mandatory) 
+    - login_time - DATETIME
+    - logout_time - TIMESTAMP
+    - created_at - TIMESTAMP 
 
 ### Normalization Summary
 The logical design has been normalized up to Third Normal Form (3NF):
