@@ -181,44 +181,44 @@ The main objective of this database design project idea is help to 
     - created_at - TIMESTAMP, Mandatory
     - update_at - TIMESTAMP, Mandatory
 - **Author**
-    - id - PK, INTEGER,  Each Author inherits its unique identifier from its supertype(Person), PK, FK -> Person.id, on delete:cascade, number
-    - date_of_birth - DATE, Mandatory
+    - id - PK, INTEGER, FK -> Person.id, on delete:cascade
+    - date_of_birth - DATE, Optional
     - created_at - TIMESTAMP, Mandatory
     - update_at - TIMESTAMP, Mandatory
 - **Member**
-    - id - PK, INTEGER, FK -> Person.id, on delete:cascade, number
-    - email - VARCHAR, (mandatory, text, unique)
-    - membership_type ENUM:Basic/Standard/Premium,  mandatory, default: Basic)
-    - address_id - INTEGER, mandatory, FK -> Addresses.id)
-    - phone number- VARCHAR, mandatory, length = 12)
-    - membership_status - ENUM:Active/Expired, mandatory, default: Active)
-    - created_at - TIMESTAMP, (timestamp, mandatory)
-    - update_at - TIMESTAMP, (timestamp, mandatory)
+    - id - PK, INTEGER, FK -> Person.id, on delete:cascade
+    - email - VARCHAR, Mandatory, unique
+    - membership_type ENUM(Basic/Standard/Premium), Mandatory, default: Basic
+    - address_id - INTEGER, Mandatory, FK -> Addresses.id
+    - phone number- VARCHAR, Mandatory, length = 12
+    - membership_status - ENUM(Active/Expired), Mandatory, default: Active
+    - created_at - TIMESTAMP, Mandatory
+    - update_at - TIMESTAMP, Mandatory
 - **Staff**
-    - id - PK, INTEGER< FK -> Person.id, on delete:cascade)
-    - address_id - INTEGER,  (number, mandatory, FK -> Addresses.id)
-    - role - ENUM:Admin/Employee, mandatory, default:Employee)
-    - created_at - TIMESTAMP,  (timestamp, mandatory)
-    - updated_at - TIMESTAMP, (timestamp, mandatory)
+    - id - PK, INTEGER, FK -> Person.id, on delete:cascade
+    - address_id - INTEGER, Mandatory, FK -> Addresses.id
+    - role - ENUM(Admin/Employee), Mandatory, default:Employee
+    - created_at - TIMESTAMP,  Mandatory
+    - updated_at - TIMESTAMP, Mandatory
 - **Publisher**
-    - id - Surrogate PK, INTEGER, 
-    - name - VARCHAR, unique, mandatory)
-    - establish_year - YEAR, optional)
+    - id - Surrogate PK, INTEGER
+    - name - VARCHAR, Mandatory, unique
+    - establish_year - YEAR, Optional
 - **Genre**
-    - id - Surrogate PK, INTEGER, 
-    - name - VARCHAR, (text, mandatory, unique)
-    - description - TEXT, (text, optional)
+    - id - Surrogate PK, INTEGER
+    - name - VARCHAR, Mandatory, unique
+    - description - TEXT, Optional
 - **Book**
     - isbn - PK, INTEGER, 
-    - title - VARCHAR, (text, mandatory)
-    - publisher_id - INTEGER, (number, mandatory, FK -> Publishers.id)
-    - genre_id -  INTEGER, (number, mandatory, FK -> Genres.id)
-    - publication_year - YEAR, (year, optional)
+    - title - VARCHAR, Mandatory
+    - publisher_id - INTEGER, Mandatory, FK -> Publishers.id
+    - genre_id -  INTEGER, Mandatory, FK -> Genres.id
+    - publication_year - YEAR, Optional
     - edition - INTEGER, (number, optional)
     - price - DECIMAL, (Decimal, mandatory, price > 0)
     - is_available - BOOLEAN,  (boolean, mandatory, default: true)
     - created_at - TIMESTAMP, (timestamp, mandatory)
-    - update_at - TIMESTAMP,  (timestamp, mandatory)
+    - update_at - TIMESTAMP, Mandatory
 - **Book_Author**
     - book_isbn - VARCHAR,  (text, mandatory, FK -> Book.ISBN)
     - author_id - INTEGER, (number, mandatory, FK -> Authors.id)
@@ -230,25 +230,25 @@ The main objective of this database design project idea is help to 
     - book_issue_date - DATE, (date, mandatory, default: current date)
     - due_date - DATE,  (date, mandatory)
     - is_returned - BOOLEAN,  (boolean, mandatory, default: false)
-    - created_at - TIMESTAMP, (timestamp, mandatory)
+    - created_at - TIMESTAMP, Mandatory
 - **Fine**
     - book_transaction_id - Surrogate PK, INTEGER, FK -> Transactions.id)
     - amount - DECIMAL, (decimal, mandatory, default: 0), Derived from days pass due date of transaction but not returned: days * 5
     - is_paid - BOOLEAN, (boolean, mandatory, default: false)
-    - created_at - TIMESTAMP
+    - created_at - TIMESTAMP, Mandatory
 - **Schedule**
     - id - Surrogate PK, INTEGER, 
     - staff_id - INTEGER, (number, mandatory, FK -> Staff.id, on delete: cascade)
     - day_of_week - ENUM:days of week, mandatory)
     - start_time - TIME, (time, mandatory)
     - end_time - TIMESTAMP
-    - created_at - TIMESTAMP 
+    - created_at - TIMESTAMP, Mandatory
 - **Log**
     - id - Surrogate PK, INTEGER; System generated unique identifier for each staff log
     - staff_id - INTEGER, FK(Staff.id), on delete:cascade, Refernce the Long to a Staff (number, mandatory) 
     - login_time - DATETIME
-    - logout_time - TIMESTAMP
-    - created_at - TIMESTAMP 
+    - logout_time - TIMESTAMP, Mandatory
+    - created_at - TIMESTAMP, Mandatory
 
 ### Normalization Summary
 The logical design has been normalized up to Third Normal Form (3NF):
