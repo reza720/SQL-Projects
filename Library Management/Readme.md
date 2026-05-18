@@ -241,14 +241,14 @@ The main objective of this database design project idea is help to 
     - staff_id - INTEGER, Mandatory, FK -> Staff.id, on delete: cascade
     - day_of_week - ENUM(days of week), Mandatory
     - start_time - TIME, Mandatory
-    - end_time - TIMESTAMP
-    - created_at - TIMESTAMP, Mandatory
+    - end_time - TIMESTAMP, Optional, 
+    - created_at - TIMESTAMP, Mandatory, Default(Current Timestamp),
 - **Log**
     - id - Surrogate PK, INTEGER
-    - staff_id - INTEGER, Mandatory, FK -> Staff.id, on delete:cascade
-    - login_time - DATETIME, Opional
-    - logout_time - TIMESTAMP, Mandatory
-    - created_at - TIMESTAMP, Mandatory
+    - staff_id - INTEGER, Mandatory, FK -> Staff.id, on delete:cascade, 
+    - login_time - DATETIME, Mandatory, Default(Current Date),
+    - logout_time - TIMESTAMP, Optional
+    - created_at - TIMESTAMP, Mandatory, Default(Current Timestamp), 
 
 ### Normalization Summary
 The logical design has been normalized up to Third Normal Form (3NF):
