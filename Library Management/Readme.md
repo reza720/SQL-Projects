@@ -167,88 +167,88 @@ The main objective of this database design project idea is help to 
 ## Logical Design
 ### Tables
 - **Address**
-    - address_id - Surrogate PK, INTEGER, 
-    - province- VARCHAR, Mandatory, 
+    - address_id - Surrogate PK, INTEGER; auto-generated unique identifier for each address
+    - province- VARCHAR, Mandatory
     - district - VARCHAR, Mandatory
     - street - VARCHAR, Mandatory
     - house_number - VARCHAR, Mandatory
-    - created_at - TIMESTAMP, Mandatory
-    - update_at - TIMESTAMP, Mandatory
+    - created_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
+    - update_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
 - **Person**
-    - id - Surrogate PK, INTEGER, 
+    - id - Surrogate PK, INTEGER; auto-generated unique identifier for each Person
     - first_name - VARCHAR, Mandatory,  only alphabet and space
     - last_name - VARHCAR, Mandatory, only alphabet and space
-    - created_at - TIMESTAMP, Mandatory
-    - update_at - TIMESTAMP, Mandatory
+    - created_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
+    - update_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
 - **Author**
-    - id - PK, INTEGER, FK -> Person.id, on delete:cascade
-    - date_of_birth - DATE, Optional
-    - created_at - TIMESTAMP, Mandatory
-    - update_at - TIMESTAMP, Mandatory
+    - id - PK, INTEGER, FK -> Person.id, on delete:cascade; Uses shared primary key with its supertype (Person)
+    - date_of_birth - DATE, Optional, Only past date
+    - created_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
+    - update_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
 - **Member**
-    - id - PK, INTEGER, FK -> Person.id, on delete:cascade
+    - id - PK, INTEGER, FK -> Person.id, on delete:cascade, Uses shared primary key with its supertype (Person)
     - email - VARCHAR, Mandatory, unique
-    - membership_type ENUM(Basic/Standard/Premium), Mandatory, default: Basic
-    - address_id - INTEGER, Mandatory, FK -> Addresses.id
-    - phone_number- VARCHAR, Mandatory, length = 12
-    - membership_status - ENUM(Active/Expired), Mandatory, default: Active
-    - created_at - TIMESTAMP, Mandatory
-    - update_at - TIMESTAMP, Mandatory
+    - membership_type ENUM(Basic/Standard/Premium), Mandatory, Default value(Basic)
+    - address_id - INTEGER, Mandatory, FK -> Addresses.id; links member to his/her address
+    - phone_number- VARCHAR, Mandatory, length <= 13
+    - membership_status - ENUM(Active/Expired), Mandatory, Default value(Active)
+    - created_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
+    - update_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
 - **Staff**
-    - id - PK, INTEGER, FK -> Person.id, on delete:cascade
-    - address_id - INTEGER, Mandatory, FK -> Addresses.id
-    - role - ENUM(Admin/Employee), Mandatory, default:Employee
-    - created_at - TIMESTAMP,  Mandatory
-    - updated_at - TIMESTAMP, Mandatory
+    - id - PK, INTEGER, FK -> Person.id, on delete:cascade; Uses shared PK with its supertype (Person)
+    - address_id - INTEGER, Mandatory, FK -> Addresses.id; links staff to his/her address
+    - role - ENUM(Admin/Employee), Mandatory, Default value(Employee)
+    - created_at - TIMESTAMP,  Mandatory, Default value(Current Timestamp)
+    - updated_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
 - **Publisher**
-    - id - Surrogate PK, INTEGER
+    - id - Surrogate PK, INTEGER; auto-generated unique identifier for each Publisher
     - name - VARCHAR, Mandatory, unique
-    - establish_year - YEAR, Optional
+    - establish_year - YEAR, Optional, Only past date
 - **Genre**
-    - id - Surrogate PK, INTEGER
+    - id - Surrogate PK, INTEGER; auto-generated unique identifier for each Genre
     - name - VARCHAR, Mandatory, unique
     - description - TEXT, Optional
 - **Book**
-    - isbn - PK, INTEGER, 
+    - isbn - PK, VARCHAR; Natural unique identifier for each book
     - title - VARCHAR, Mandatory
-    - publisher_id - INTEGER, Mandatory, FK -> Publishers.id
-    - genre_id -  INTEGER, Mandatory, FK -> Genres.id
-    - publication_year - YEAR, Optional
-    - edition - INTEGER, Optional
+    - publisher_id - INTEGER, Mandatory, FK -> Publishers.id; Links Book to its Publisher
+    - genre_id -  INTEGER, Mandatory, FK -> Genres.id; Links Book it its Genre
+    - publication_year - YEAR, Optional, Only past date
+    - edition - INTEGER, Optional, edition > 0
     - price - DECIMAL, Mandatory, price > 0
-    - is_available - BOOLEAN, Mandatory, default: true
-    - created_at - TIMESTAMP, Mandatory
-    - update_at - TIMESTAMP, Mandatory
+    - is_available - BOOLEAN, Mandatory, Default value(true)
+    - created_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
+    - update_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
 - **Book_Author**
-    - book_isbn - VARCHAR, Mandatory, FK -> Book.ISBN
-    - author_id - INTEGER, Mandatory, FK -> Authors.id
-    - PK (book_isbn, author_id)
+    - book_isbn - VARCHAR, Mandatory, FK -> Book.ISBN; Links the Book
+    - author_id - INTEGER, Mandatory, FK -> Authors.id; Links the Author of the Book
+    - PK (book_isbn, author_id); Ensures each Book and its Author pair is unique
 - **Book_Transaction**
-    - id - Surrogate PK, INTEGER, 
-    - member_id - INTEGER, Mandatory, FK -> Members.id 
-    - book_isbn - VARCHAR, Mandatory, FK -> Books.ISBN
-    - book_issue_date - DATE, Mandatory, default: current date
+    - id - Surrogate PK, INTEGER; auto-generated unique identifier for each Book_Transaction
+    - member_id - INTEGER, Mandatory, FK -> Members.id; Links Transaction to the Member
+    - book_isbn - VARCHAR, Mandatory, FK -> Books.ISBN; Links the Transaction to the Book
+    - book_issue_date - DATE, Mandatory, Default value(Current date)
     - due_date - DATE, Mandatory
-    - is_returned - BOOLEAN, Mandatory, default: false
-    - created_at - TIMESTAMP, Mandatory
+    - is_returned - BOOLEAN, Mandatory, Default value(false)
+    - created_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
 - **Fine**
-    - book_transaction_id - Surrogate PK, INTEGER, FK -> Transactions.id
-    - amount - DECIMAL, Mandatory, default: 0
-    - is_paid - BOOLEAN, Mandatory, default: false
-    - created_at - TIMESTAMP, Mandatory
+    - book_transaction_id - Pk, INTEGER, FK -> Transactions.id; uses shared primary key with the transaction it belongs to
+    - amount - DECIMAL, Mandatory, Default value(0), amount >= 0
+    - is_paid - BOOLEAN, Mandatory, Default value(false)
+    - created_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
 - **Schedule**
-    - id - Surrogate PK, INTEGER, 
-    - staff_id - INTEGER, Mandatory, FK -> Staff.id, on delete: cascade
+    - id - Surrogate PK, INTEGER; auto-generated unique identifier for each Schedule
+    - staff_id - INTEGER, Mandatory, FK -> Staff.id, on delete: cascade; Links Schedule to the staff it belongs to
     - day_of_week - ENUM(days of week), Mandatory
     - start_time - TIME, Mandatory
     - end_time - TIMESTAMP, Optional, 
-    - created_at - TIMESTAMP, Mandatory, Default(Current Timestamp),
+    - created_at - TIMESTAMP, Mandatory, Default value(Current Timestamp)
 - **Log**
-    - id - Surrogate PK, INTEGER
-    - staff_id - INTEGER, Mandatory, FK -> Staff.id, on delete:cascade, 
-    - login_time - DATETIME, Mandatory, Default(Current Date),
-    - logout_time - TIMESTAMP, Optional
-    - created_at - TIMESTAMP, Mandatory, Default(Current Timestamp), 
+    - id - Surrogate PK, INTEGER; auto-generated unique identifier for each Log
+    - staff_id - INTEGER, Mandatory, FK -> Staff.id, on delete:cascade; Links to the Staff the Log belongs to
+    - login_time - DATETIME, Mandatory, Default value(Current Date)
+    - logout_time - TIMESTAMP, Optional, logout_time > login_time
+    - created_at - TIMESTAMP, Mandatory, Default value(Current Timestamp) 
 
 ### Normalization Summary
 The logical design has been normalized up to Third Normal Form (3NF):
