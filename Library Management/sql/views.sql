@@ -20,7 +20,11 @@ CREATE VIEW staff_full_profile AS
 
 CREATE VIEW staff_logs AS
     SELECT 
-        p.id, p.first_name, p.last_name, l.login_time, l.logout_time
+        p.id, 
+        p.first_name, 
+        p.last_name, 
+        l.login_time, 
+        l.logout_time
     FROM
         Staff s
             JOIN

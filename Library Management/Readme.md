@@ -312,7 +312,7 @@ Since these columns are not part of the primary key, MySQL does not support this
 ## Implementation Notes
 
 ### Logical Data Views
-To simplify data retrieval for use case queries that require joins, create views.
+To simplify data retrieval for use case queries that require joins
 - **Staff Views**
     - Full Staff Profile: Person + Staff + Address
     - Staff Logs: Person + Staff + Log
