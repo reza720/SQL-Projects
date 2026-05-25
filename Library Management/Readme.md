@@ -221,9 +221,12 @@ Since these columns are not part of the primary key, MySQL does not support this
 
 ---
 
-## Application of Database
+## Database Operational Specification
+This section defines how the database is used in practice. <br>
 
-Now this database should be able to support the following queries:
+Before demonstrating how the database be used, we first need to insert some records or can call seed data. After we insert seed data, the database should be able to support the following use case queries:
+
+### Use Case Queries
 - **Staff Queries**
     - Full Staff Profile by id: Person + Staff + Address
     - List all Staff with full profile, supports(sorting & pagination)
@@ -311,7 +314,7 @@ Now this database should be able to support the following queries:
         - Compare membership types by their total of Transactions
         - Compare Genre based on their Transactions
 
-However, to make writing the above use cases queries easier we write these Views, Functios, and Triggers
+To simplify the process of writing the above use case queries, we define supporting views, functions, and triggers.
 
 - **Views:** To simplify data retrieval for queries that require joins these views are needed:
     - Staff Views
@@ -338,8 +341,9 @@ However, to make writing the above use cases queries easier we write these Views
     - Book Issue Trigger: Mark Book as unavailable
     - Book Return Trigger: Mark Book as available
 
-### Transactions
-To keep data correct and consistent, the following transactions which ensure multiple database queries run together as one operation are used:
+### Transactions  
+To ensure that data remains consistent during business operations, we define these transactions: 
+
 - **Issue Book Transaction:** Check book is available, Insert into book transaction, and Set is_available = false
 - **Return Book Transaction:** Update bok transaction (set return date, is_returned = true) and Set is_available = true
 - **Fine Payment Transaction:** Set is_paid = true
@@ -347,15 +351,17 @@ To keep data correct and consistent, the following transactions which ensure mul
 - **Staff Registration Transaction:** Add full profile of a Staff: Person + Staff + Address
 - **Author Registration Transaction:** Add full profile of an Author: Person + Author
 
-### Procedures
-To automate database operations/transactions, the following procedures are used:
-- **Issue Book Procedure**
-- **Return Book Procedure**
-- **Fine Payment Procedure**
-- **Member Registration Procedure**
-- **Staff Registration Procedure**
-- **Author Registration Procedure**
+ To automate transactions, we define them inside stored procedures. Therefore, the following procedures are required:
+
+- Issue Book Procedure
+- Return Book Procedure
+- Fine Payment Procedure
+- Member Registration Procedure
+- Staff Registration Procedure
+- Author Registration Procedure
 
 ### Access Control
+Finally, to restrict which queries and transactions each database role can execute, access control has been applied as follows:
+
 - **Admin:** Has full system privileges and can create, read, update, and delete all data across the system.
 - **Employee:** Has restricted access, Cannot manage staff, log, and schedul.
