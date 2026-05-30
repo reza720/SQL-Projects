@@ -224,9 +224,9 @@ Since these columns are not part of the primary key, MySQL does not support this
 ## Database Operational Specification
 This section defines how the database is used in practice. <br>
 
-Before demonstrating how the database be used, we first need to insert some records or can call seed data. After we insert seed data, the database should be able to support the following use case queries:
+### Use Case Queries  
+The database should be able to support the following use case queries:
 
-### Use Case Queries
 - **Staff Queries**
     - Full Staff Profile by id: Person + Staff + Address
     - List all Staff with full profile, supports(sorting & pagination)
@@ -314,7 +314,7 @@ Before demonstrating how the database be used, we first need to insert some reco
         - Compare membership types by their total of Transactions
         - Compare Genre based on their Transactions
 
-To simplify the process of writing the above use case queries, we define supporting views, functions, and triggers.
+To simplify the process of writing the above use case queries and data insertion, we first define and implement supporting views, functions, triggers, transactions, and procedures.
 
 - **Views:** To simplify data retrieval for queries that require joins these views are needed:
     - Staff Views
@@ -341,27 +341,21 @@ To simplify the process of writing the above use case queries, we define support
     - Book Issue Trigger: Mark Book as unavailable
     - Book Return Trigger: Mark Book as available
 
-### Transactions  
-To ensure that data remains consistent during business operations, we define these transactions: 
+- **Transactions:**  To ensure that data remains consistent during business operations, we define these transactions: 
+    - Member Registration Transaction: Add full profile of a Member: Person + Member + Address
+    - Staff Registration Transaction: Add full profile of a Staff: Person + Staff + Address
+    - Author Registration Transaction: Add full profile of an Author: Person + Author
 
-- **Issue Book Transaction:** Check book is available, Insert into book transaction, and Set is_available = false
-- **Return Book Transaction:** Update bok transaction (set return date, is_returned = true) and Set is_available = true
-- **Fine Payment Transaction:** Set is_paid = true
-- **Member Registration Transaction:** Add full profile of a Member: Person + Member + Address
-- **Staff Registration Transaction:** Add full profile of a Staff: Person + Staff + Address
-- **Author Registration Transaction:** Add full profile of an Author: Person + Author
+ - **Procedures:** To automate transactions, we define them inside stored procedures. Therefore, the following procedures are required: 
+    - Member Registration Procedure
+    - Staff Registration Procedure
+    - Author Registration Procedure
 
- To automate transactions, we define them inside stored procedures. Therefore, the following procedures are required:
-
-- Issue Book Procedure
-- Return Book Procedure
-- Fine Payment Procedure
-- Member Registration Procedure
-- Staff Registration Procedure
-- Author Registration Procedure
+Before inserting our seed data and writing the use case queries, we define and implement access control to restrict who can perform specific operations in the database.
 
 ### Access Control
-Finally, to restrict which queries and transactions each database role can execute, access control has been applied as follows:
-
 - **Admin:** Has full system privileges and can create, read, update, and delete all data across the system.
 - **Employee:** Has restricted access, Cannot manage staff, log, and schedul.
+
+
+Now, we can first add some seed data, and then write our use case queries.

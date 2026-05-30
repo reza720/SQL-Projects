@@ -15,7 +15,7 @@ Each project covers
 - Physical Design 
 - Database Operational Specification
 
-## SQL/
+## implementation/
 - tables.sql
 - indexes.sql
 - partitionings.sql
