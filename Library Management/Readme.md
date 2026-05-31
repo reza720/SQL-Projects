@@ -316,7 +316,8 @@ The database should be able to support the following use case queries:
 
 To simplify the process of writing the above use case queries and data insertion, we first define and implement supporting views, functions, triggers, transactions, and procedures.
 
-- **Views:** To simplify data retrieval for queries that require joins these views are needed:
+### Views 
+To simplify data retrieval for queries that require joins these views are needed:
     - Staff Views
         - Full Staff Profile: Person + Staff + Address
         - Staff Logs: Person + Staff + Log
@@ -330,30 +331,32 @@ To simplify the process of writing the above use case queries and data insertion
         - Book Authors: Book_Author + Person
         - Full Author Profile: Person + Author
 
-- **Functions:** Some of dashboard Queries need these helper functions:
+### Functions
+Some of dashboard Queries need these helper functions:
     - Member total fine function
     - Member transaction count function 
-    - Member active status function
     - Book availability check function
-    - Transaction overdue check function
 
-- **Triggers:** To automatically run these events we need these triggers:
+### Triggers
+To automatically run these events we need these triggers:
     - Book Issue Trigger: Mark Book as unavailable
     - Book Return Trigger: Mark Book as available
 
-- **Transactions:**  To ensure that data remains consistent during business operations, we define these transactions: 
+### Transactions
+To ensure that data remains consistent during business operations, we define these transactions: 
     - Member Registration Transaction: Add full profile of a Member: Person + Member + Address
     - Staff Registration Transaction: Add full profile of a Staff: Person + Staff + Address
     - Author Registration Transaction: Add full profile of an Author: Person + Author
 
- - **Procedures:** To automate transactions, we define them inside stored procedures. Therefore, the following procedures are required: 
+ ### Procedures
+To automate transactions, we define them inside stored procedures. Therefore, the following procedures are required: 
     - Member Registration Procedure
     - Staff Registration Procedure
     - Author Registration Procedure
 
+### Access Control
 Before inserting our seed data and writing the use case queries, we define and implement access control to restrict who can perform specific operations in the database.
 
-### Access Control
 - **Admin:** Has full system privileges and can create, read, update, and delete all data across the system.
 - **Employee:** Has restricted access, Cannot manage staff, log, and schedul.
 
