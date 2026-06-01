@@ -202,6 +202,7 @@ The logical design has been normalized up to Third Normal Form (3NF):
     - Index on staff id
 - **Logs Table**
     - Index on staff id
+
 ### Table Partitioning Strategy
 In this database, no tables require partitioning due to data size; however, for learning purposes, partitioning strategies can be applied as follow based on their access patterns. 
 Since these columns are not part of the primary key, MySQL does not support this partitioning, but some DBMSs like PostgreSQL can handle it. 
@@ -322,47 +323,47 @@ To simplify the process of writing the above use case queries and data insertion
 
 ### Views 
 To simplify data retrieval for queries that require joins these views are needed:
-    - Staff Views
-        - Full Staff Profile: Person + Staff + Address
-        - Staff Logs: Person + Staff + Log
-        - Staff Schedules: Person + Staff + Schedule
-    - Member Views
-        - Full Member Profile: Person + Member + Address
-        - Member Fines: Fine + Transaction + Member + Person
-        - Member Transactions: Book_Transaction + Member + Book
-    - Book Views
-        - Book Details: Book + Publisher + Genre
-        - Book Authors: Book_Author + Person
-        - Full Author Profile: Person + Author
+- Staff Views
+    - Full Staff Profile: Person + Staff + Address
+    - Staff Logs: Person + Staff + Log
+    - Staff Schedules: Person + Staff + Schedule
+- Member Views
+    - Full Member Profile: Person + Member + Address
+    - Member Fines: Fine + Transaction + Member + Person
+    - Member Transactions: Book_Transaction + Member + Book
+- Book Views
+    - Book Details: Book + Publisher + Genre
+    - Book Authors: Book_Author + Person
+    - Full Author Profile: Person + Author
 
 ### Functions
 Some of dashboard Queries need these helper functions:
-    - Member total fine function
-    - Member transaction count function 
-    - Book availability check function
+- Member total fine function
+- Member transaction count function 
+- Book availability check function
 
 ### Triggers
 To automatically run these events we need these triggers:
-    - Book Issue Trigger: Mark Book as unavailable
-    - Book Return Trigger: Mark Book as available
+- Book Issue Trigger: Mark Book as unavailable
+- Book Return Trigger: Mark Book as available
 
 ### Transactions
 To ensure that data remains consistent during business operations, we define these transactions: 
-    - Member Registration Transaction: Add full profile of a Member: Person + Member + Address
-    - Staff Registration Transaction: Add full profile of a Staff: Person + Staff + Address
-    - Author Registration Transaction: Add full profile of an Author: Person + Author
+- Member Registration Transaction: Add full profile of a Member: Person + Member + Address
+- Staff Registration Transaction: Add full profile of a Staff: Person + Staff + Address
+- Author Registration Transaction: Add full profile of an Author: Person + Author
 
  ### Procedures
 To automate transactions, we define them inside stored procedures. Therefore, the following procedures are required: 
-    - Member Registration Procedure
-    - Staff Registration Procedure
-    - Author Registration Procedure
+- Member Registration Procedure
+- Staff Registration Procedure
+- Author Registration Procedure
 
 ### Access Control
 Before inserting seed data and implementing the use-case queries, access control is defined and enforced to restrict which operations each user can perform within the database.
 
 The system contains two database users: Admin and Employee
-    - **Admin:** Has full privileges on the Library Management database and can create, read, update, and delete all data across the system.
-    - **Employee:** Has restricted privileges. Employees can manage library-related records such as books, members, authors, publishers, genres, transactions, and fines, but they are not permitted to access or manage Staff, Schedule, or Log data.
+- **Admin:** Has full privileges on the Library Management database and can create, read, update, and delete all data across the system.
+- **Employee:** Has restricted privileges. Employees can manage library-related records such as books, members, authors, publishers, genres, transactions, and fines, but they are not permitted to access or manage Staff, Schedule, or Log data.
 
 **Now, we will create separate database connections for each user and log in as those users. After that, we will insert seed data into the database and proceed with writing and executing use-case queries.**
