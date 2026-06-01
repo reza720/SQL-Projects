@@ -21,7 +21,7 @@ Each project covers
 - partitionings.sql
 - views.sql  
 - procedures.sql  
-- access_control.sq 
+- access_control.sql
 - seed_data.sql
 - Use Case Queries.sql
 - functions.sql

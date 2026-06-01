@@ -1,12 +1,16 @@
 ## Scenario
-### Library Management Database System
-The library management system efficiently manages the library operations. In this database system, we store information about books, book borrowers, and library staff, and so on. 
+### Khorshid Library 
+Right now, the library is managed using a paper-based system. Staff manually write down records for books, members, and book loans. This often causes problems like mistakes in records, missing information, and slow daily work for both staff and management.
 
-The main objective of this database design project idea is help to 
-- Keep a record of the books available in the library 
-- Automate the process of book lending and returns
-- Assisting easily in book searches and availability checks
-- It also helps to keep a record of the staff details and the fines paid by late returners 
+Because of these issues, the library needs a proper database system to make everything more organized, accurate, and easier to manage. So, the goal is to design and build a database that handles the core library operations in a structured way.
+
+What this database should do
+- Keep a proper record of all books in the library
+- Make it easy to track when books are borrowed and returned
+- Help quickly search books and check if they are available
+- Store staff information in an organized way
+- Keep track of fines for late returns and whether they are paid
+- Control access based on staff and manager roles
 
 ---
 
@@ -355,10 +359,10 @@ To automate transactions, we define them inside stored procedures. Therefore, th
     - Author Registration Procedure
 
 ### Access Control
-Before inserting our seed data and writing the use case queries, we define and implement access control to restrict who can perform specific operations in the database.
+Before inserting seed data and implementing the use-case queries, access control is defined and enforced to restrict which operations each user can perform within the database.
 
-- **Admin:** Has full system privileges and can create, read, update, and delete all data across the system.
-- **Employee:** Has restricted access, Cannot manage staff, log, and schedul.
+The system contains two database users: Admin and Employee
+    - **Admin:** Has full privileges on the Library Management database and can create, read, update, and delete all data across the system.
+    - **Employee:** Has restricted privileges. Employees can manage library-related records such as books, members, authors, publishers, genres, transactions, and fines, but they are not permitted to access or manage Staff, Schedule, or Log data.
 
-
-Now, we can first add some seed data, and then write our use case queries.
+**Now, we will create separate database connections for each user and log in as those users. After that, we will insert seed data into the database and proceed with writing and executing use-case queries.**
